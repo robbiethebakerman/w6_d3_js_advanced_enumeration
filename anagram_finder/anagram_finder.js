@@ -3,24 +3,22 @@ const AnagramFinder = function (word) {
 }
 
 AnagramFinder.prototype.isAnagram = function (otherWord) {
-  const wordArraySorted = this.word.split('').sort(); //to toLowerCase
-  const otherWordArraySorted = otherWord.split('').sort();
-  let wordSorted = "";
-  for (const letter of wordArraySorted) {
-    wordSorted + letter;
+  const wordSorted = this.word.toLowerCase().split('').sort().join(); //to toLowerCase
+  const otherWordSorted = otherWord.toLowerCase().split('').sort().join();
+  let result = true;
+  if (wordSorted !== otherWordSorted) {
+    result = false;
+  } else if (this.word === otherWord) {
+    result = false;
   };
-  let otherWordSorted = "";
-  for (const letter of otherWordArraySorted) {
-    otherWordSorted + letter;
-  };
-  let result = false;
-  if (wordSorted === otherWordSorted) {
-    let result = true;
-  }
+  return result;
 };
 
 AnagramFinder.prototype.findAnagrams = function (otherWords) {
-
+  const result = otherWords.filter((word) => {
+    return this.isAnagram(word);
+  });
+  return result;
 }
 
 module.exports = AnagramFinder;
