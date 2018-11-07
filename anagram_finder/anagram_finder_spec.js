@@ -36,4 +36,15 @@ describe('AnagramFinder', function () {
     const anagramFinder = new AnagramFinder('word');
     assert.deepStrictEqual(anagramFinder.findAnagrams(['']), []);
   });
+
+  it('should detect if a given word is an anagram', function () {
+    const anagramFinder = new AnagramFinder('ward');
+    assert.strictEqual(anagramFinder.isAnagram('draw'), true)
+  });
+
+  it('should detect if a given word is a non-anagram', function () {
+    const anagramFinder = new AnagramFinder('ward');
+    assert.strictEqual(anagramFinder.isAnagram('word'), false)
+  });
+
 });
